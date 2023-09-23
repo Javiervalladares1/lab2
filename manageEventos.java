@@ -61,7 +61,7 @@ public class manageEventos {
         Recinto nuevoRecinto = new Recinto(idPais, ubicacion, nuevoIdRecinto, capacidad);
         recintos.add(nuevoRecinto);
         escribirRecintosEnCSV(recintos);
-        System.out.println("Recinto agregado con éxito.");
+        System.out.println("Recinto agregado con éxito.");//
     }
 
     public void verRecintoPorId() {
