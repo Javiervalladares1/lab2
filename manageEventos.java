@@ -71,14 +71,22 @@ public class manageEventos {
         scanner.nextLine();
         System.out.print("Ingrese el nombre del artista: ");
         String artista = scanner.nextLine();
-        System.out.print("Ingrese el horario (de 6 a 22): ");
-        int hora = scanner.nextInt();
+        int hora; // Variable para almacenar la hora
+        do {
+            System.out.print("Ingrese el horario (de 6 a 22): ");
+            hora = scanner.nextInt();
+        } while (hora < 6 || hora > 22);
+        scanner.nextLine();
         scanner.nextLine();
         System.out.print("Ingrese la fecha (en formato AAAA-MM-DD): ");
         String fechaStr = scanner.nextLine();
         LocalDate fecha = LocalDate.parse(fechaStr);
-        System.out.print("Ingrese la duración (de 1 a 12 horas): ");
-        int duracion = scanner.nextInt();
+        int duracion;
+        do {
+            System.out.print("Ingrese la duración (de 1 a 12 horas): ");
+            duracion = scanner.nextInt();
+        } while (duracion < 1 || duracion > 12);
+        scanner.nextLine();
         scanner.nextLine();
         System.out.print("Ingrese la cantidad de asistentes (de 10 a 150000): ");
         int asistentes = scanner.nextInt();
