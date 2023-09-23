@@ -71,26 +71,29 @@ public class manageEventos {
         scanner.nextLine();
         System.out.print("Ingrese el nombre del artista: ");
         String artista = scanner.nextLine();
-        int hora; // Variable para almacenar la hora
+
+        int hora;
         do {
             System.out.print("Ingrese el horario (de 6 a 22): ");
             hora = scanner.nextInt();
         } while (hora < 6 || hora > 22);
-        scanner.nextLine();
-        scanner.nextLine();
+        scanner.nextLine(); // Consumir la nueva línea
+
         System.out.print("Ingrese la fecha (en formato AAAA-MM-DD): ");
         String fechaStr = scanner.nextLine();
         LocalDate fecha = LocalDate.parse(fechaStr);
+
         int duracion;
         do {
             System.out.print("Ingrese la duración (de 1 a 12 horas): ");
             duracion = scanner.nextInt();
         } while (duracion < 1 || duracion > 12);
         scanner.nextLine();
-        scanner.nextLine();
+
         System.out.print("Ingrese la cantidad de asistentes (de 10 a 150000): ");
         int asistentes = scanner.nextInt();
         scanner.nextLine();
+
         int nuevoIdEvento = obtenerNuevoIdEvento();
         Evento nuevoEvento = new Evento(nuevoIdEvento, idPais, artista, hora, fecha, duracion, asistentes);
         eventos.add(nuevoEvento);
@@ -135,7 +138,15 @@ public class manageEventos {
     }
 
     private void escribirPaisEnCSV(Pais pais) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("Pais.csv", true))) {
+        File archivo = new File("Pais.csv");
+        boolean archivoExiste = archivo.exists();
+    
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo, true))) {
+            if (!archivoExiste) {
+                escritor.write("ID,Pais");
+                escritor.newLine();
+            }
+    
             String linea = pais.getId() + "," + pais.getNombre();
             escritor.write(linea);
             escritor.newLine();
@@ -143,9 +154,17 @@ public class manageEventos {
             e.printStackTrace();
         }
     }
-
+    
     private void escribirRecintoEnCSV(Recinto recinto) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("Recinto.csv", true))) {
+        File archivo = new File("Recinto.csv");
+        boolean archivoExiste = archivo.exists();
+    
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo, true))) {
+            if (!archivoExiste) {
+                escritor.write("IDPaís,Ubicación,IDRecinto,Capacidad");
+                escritor.newLine();
+            }
+    
             String linea = recinto.getIdPais() + "," + recinto.getUbicacion() + "," + recinto.getId() + "," + recinto.getCapacidad();
             escritor.write(linea);
             escritor.newLine();
@@ -153,9 +172,17 @@ public class manageEventos {
             e.printStackTrace();
         }
     }
-
+    
     private void escribirEventoEnCSV(Evento evento) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("Eventos.csv", true))) {
+        File archivo = new File("Eventos.csv");
+        boolean archivoExiste = archivo.exists();
+    
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo, true))) {
+            if (!archivoExiste) {
+                escritor.write("ID,IDPaís,Artista,Hora,Fecha,Duración,Asistentes");
+                escritor.newLine();
+            }
+    
             String linea = evento.getId() + "," + evento.getIdPais() + "," + evento.getArtista() + ","
                     + evento.getHora() + "," + evento.getFecha() + "," + evento.getDuracion() + ","
                     + evento.getAsistentes();
@@ -165,6 +192,7 @@ public class manageEventos {
             e.printStackTrace();
         }
     }
+    
 
     private List<Pais> cargarPaisesDesdeCSV(String archivoCSV) {
         List<Pais> listaPaises = new ArrayList<>();
