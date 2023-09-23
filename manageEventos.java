@@ -127,6 +127,7 @@ public class manageEventos {
                 String nombre = partes[1];
                 Pais pais = new Pais(id, nombre);
                 listaPaises.add(pais);
+                escribirPaisesEnCSV(listaPaises);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,6 +150,7 @@ public class manageEventos {
                 int capacidad = Integer.parseInt(partes[3]);
                 Recinto recinto = new Recinto(idPais, ubicacion, idRecinto, capacidad);
                 listaRecintos.add(recinto);
+                escribirRecintosEnCSV(listaRecintos);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -174,6 +176,7 @@ public class manageEventos {
                 int asistentes = Integer.parseInt(partes[6]);
                 Evento evento = new Evento(idEvento, idPais, artista, hora, fecha, duracion, asistentes);
                 listaEventos.add(evento);
+                escribirEventosEnCSV(listaEventos);
             }
         } catch (IOException e) {
             e.printStackTrace();
