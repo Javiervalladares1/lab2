@@ -135,7 +135,7 @@ public class manageEventos {
     }
 
     private void escribirPaisEnCSV(Pais pais) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("C:\\Users\\luisy\\Desktop\\Pais.csv", true))) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("Pais.csv", true))) {
             String linea = pais.getId() + "," + pais.getNombre();
             escritor.write(linea);
             escritor.newLine();
@@ -145,7 +145,7 @@ public class manageEventos {
     }
 
     private void escribirRecintoEnCSV(Recinto recinto) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("C:\\Users\\luisy\\Desktop\\Recinto.csv", true))) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("Recinto.csv", true))) {
             String linea = recinto.getIdPais() + "," + recinto.getUbicacion() + "," + recinto.getId() + "," + recinto.getCapacidad();
             escritor.write(linea);
             escritor.newLine();
@@ -155,7 +155,7 @@ public class manageEventos {
     }
 
     private void escribirEventoEnCSV(Evento evento) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("C:\\Users\\luisy\\Desktop\\Eventos.csv", true))) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("Eventos.csv", true))) {
             String linea = evento.getId() + "," + evento.getIdPais() + "," + evento.getArtista() + ","
                     + evento.getHora() + "," + evento.getFecha() + "," + evento.getDuracion() + ","
                     + evento.getAsistentes();
